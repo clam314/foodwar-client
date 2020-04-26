@@ -110,7 +110,7 @@
   @import '../../assets/scss/mixins';
 
   main {
-    padding: 32px;
+    padding-top: 150px;
     margin: 0 auto;
   }
 

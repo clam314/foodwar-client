@@ -9,7 +9,7 @@
 
   .loading {
     $size: 32px;
-    @include fix-box();
+    @include flex-box();
     flex-direction: row;
     align-items: center;
     justify-content: center;
@@ -38,17 +38,15 @@
       background: rgba(white, .75);
     }
 
-    &.page {
-      position: fixed;
-      bottom: 64px;
-      left: 'calc(50% - %s)'% ($size / 2);
-      width: $size;
-      height: $size;
-      padding: 16px;
-      border-radius: 50%;
-      background: white;
-      box-shadow: 0 4px 15px rgba(black, .1);
-      pointer-events: none;
+  }
+
+  @keyframes loading {
+    0% {
+      transform: rotate(0);
+    }
+
+    100% {
+      transform: rotate(360deg);
     }
   }
 

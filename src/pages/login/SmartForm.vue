@@ -18,7 +18,11 @@
 </template>
 
 <script>
+  import Loading from "./Loading";
   export default {
+    components: {
+      Loading
+    },
     props: {
       title: {
         type: String,
@@ -86,6 +90,16 @@
 
   .actions {
     text-align: center;
+  }
+
+  .fade-enter-active,
+  .fade-leave-active {
+    transition: opacity .15s linear;
+  }
+
+  .fade-enter,
+  .fade-leave-to {
+    opacity: 0;
   }
 
 </style>
