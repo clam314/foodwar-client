@@ -1,0 +1,28 @@
+@import "mixins";
+
+body,
+button,
+input,
+select,
+textarea {
+  color: #5d656b;
+  font-family: 'Signika Negative', "PingFang SC", "Helvetica Neue", STHeiti, "Microsoft Yahei", Tahoma, Simsun, sans-serif;
+  line-height: 1;
+}
+
+a {
+  color: $primary-color;
+  text-decoration: none;
+  cursor: pointer;
+
+  &:hover {
+    color: lighten($primary-color, 30%);
+  }
+}
+
+html,
+body {
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}

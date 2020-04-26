@@ -1,0 +1,133 @@
+@import "mixins";
+
+button,
+input,
+textarea {
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+  outline: none;
+  padding: 16px;
+  border-radius: 2px;
+}
+
+button {
+  background: $primary-color;
+  color: white;
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: background .3s;
+  user-select: none;
+  border: solid 1px $primary-color;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+
+  &:hover {
+    background: lighten($primary-color, 10%);
+  }
+
+  &:active {
+    background: darken($primary-color, 10%);
+  }
+
+  &.fab {
+    position: fixed;
+    z-index: 1;
+    bottom: 24px;
+    right: 18px;
+    font-size: 24px;
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 10px rgba(black, .3);
+
+    >i {
+      top: 0;
+    }
+  }
+
+  &.secondary {
+    background: white;
+    border-color: rgba($primary-color, .3);
+    color: $primary-color;
+
+    &:hover {
+      background: lighten($primary-color, 45%);
+    }
+  }
+
+  &[disabled='disabled'] {
+    background: $md-grey-400;
+    cursor: not-allowed;
+    color: $md-grey-200;
+    border-color: $md-grey-500;
+  }
+}
+
+input,
+textarea {
+  background: white;
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
+  border: solid 1px $md-grey-200;
+  // border-bottom: solid 2px $md-grey-300;
+  text-align: left;
+
+  &:focus {
+    border-color: $primary-color;
+  }
+}
+
+form {
+  padding: 64px 32px;
+  background: rgba($primary-color, .05);
+  position: relative;
+
+  >section {
+    margin: auto;
+  }
+
+  .row,
+  .actions,
+  .error {
+    &:not(:last-child) {
+      margin-bottom: 16px;
+    }
+  }
+
+  .actions {
+    @include flex-box();
+    flex-direction: row;
+
+    >* {
+      flex: 100% 1 1;
+      margin-right: 16px;
+
+      &:last-child {
+        margin-right: 0;
+      }
+    }
+  }
+
+  h2 {
+    margin: 0 0 16px;
+    // text-align: center;
+
+    &::after {
+      width: 100%;
+      border-bottom-color: rgba($primary-color, .15);
+    }
+  }
+
+  .error {
+    background: $md-red-100;
+    color: $md-red;
+    padding: 16px 32px;
+    border-radius: 3px;
+  }
+}
