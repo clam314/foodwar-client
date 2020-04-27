@@ -1,4 +1,4 @@
-import state from '../state';
+import state from '../assets/js/state';
 import router from '../router';
 
 let baseUrl;
@@ -22,10 +22,12 @@ export async function $fetch(url, options) {
     // If the route is private
     // We go to the login screen
     if (router.currentRoute.matched.some(r => r.meta.private)) {
-      router.replace({ name: 'login',
-                       params: {
-                         wantedRoute: router.currentRoute.fullPath
-      }});
+      router.replace({
+        name: 'login',
+        params: {
+          wantedRoute: router.currentRoute.fullPath
+        }
+      });
     }
   } else {
     const message = await response.text();

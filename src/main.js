@@ -3,7 +3,7 @@ import 'babel-polyfill';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
-import state from './state';
+import state from './assets/js/state';
 import VueFetch, {
   $fetch
 } from './plugins/fetch';

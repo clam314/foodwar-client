@@ -46,10 +46,10 @@
     computed: {
       title() {
         switch (this.mode) {
-          case 'login':
-            return 'Login';
-          case 'signup':
-            return 'Create a new account';
+        case 'login':
+          return 'Login';
+        case 'signup':
+          return 'Create a new account';
         }
       },
 
