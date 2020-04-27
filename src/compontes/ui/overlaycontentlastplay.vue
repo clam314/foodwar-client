@@ -15,10 +15,10 @@
     props: ['opponent'],
     computed: {
       lastPlayedCard() {
-        return getLastPlayedCard(this.opponent)
+        return getLastPlayedCard(this.opponent);
       }
     }
-  }
+  };
 
 </script>
 

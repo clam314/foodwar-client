@@ -10,11 +10,10 @@
   export default {
     name: 'overlay-content-game-over',
     props: ['players']
-  }
+  };
 
 </script>
 
 <style lang='scss' scoped>
-
 
 </style>

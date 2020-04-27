@@ -7,7 +7,7 @@
 </template>
 
 <script>
-  //import x from ''
+  // import x from ''
   export default {
     name: 'bubble',
     props: ['type', 'value', 'ratio'],
@@ -15,10 +15,10 @@
       bubbleStyle() {
         return {
           top: (this.ratio * 220 + 40) * state.worldRatio + 'px'
-        }
+        };
       }
     }
-  }
+  };
 
 </script>
 

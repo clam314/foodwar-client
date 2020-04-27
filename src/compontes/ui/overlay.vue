@@ -8,15 +8,15 @@
 </template>
 
 <script>
-  //import x from ''
+  // import x from ''
   export default {
-    name: "overlay",
+    name: 'overlay',
     methods: {
       handleClick() {
-        this.$emit("close")
+        this.$emit('close');
       }
     }
-  }
+  };
 
 </script>
 

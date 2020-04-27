@@ -12,12 +12,12 @@
 
 <script>
   export default {
-    name: "topBar",
+    name: 'topBar',
     props: ['players', 'currentPlayerIndex', 'turn'],
     created() {
-      console.log(this.players)
+      console.log(this.players);
     }
-  }
+  };
 
 </script>
 

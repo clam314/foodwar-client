@@ -1,9 +1,12 @@
 <!-- 组件说明 -->
 <template>
   <div class="banners">
+    <!-- Food -->
     <img class="food-icon" src="../svg/food-icon.svg" />
     <bubble type="food" :value="player.food" :ratio="foodRatio" />
     <banner-bar class="food-bar" color="#288339" :ratio="foodRatio" />
+
+    <!-- Health -->
     <img class="health-icon" src="../svg/health-icon.svg" />
     <bubble type="health" :value="player.health" :ratio="healthRatio" />
     <banner-bar class="health-bar" color="#9b2e2e" :ratio="healthRatio" />
@@ -11,8 +14,9 @@
 </template>
 
 <script>
+// import x from ''
   export default {
-    name: 'castle',
+    name: 'castle-banners',
     props: ['player'],
     computed: {
       foodRatio() {
@@ -23,10 +27,8 @@
       }
     }
   };
-
 </script>
 
 <style lang='scss' scoped>
-  //@import url()
-
+//@import url()
 </style>

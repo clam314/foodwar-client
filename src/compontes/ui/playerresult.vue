@@ -7,16 +7,16 @@
 </template>
 
 <script>
-  //import x from ''
+  // import x from ''
   export default {
     name: 'player-result',
     props: ['player'],
     computed: {
       result() {
-        return this.player.dead ? "defeated" : "victorious"
+        return this.player.dead ? 'defeated' : 'victorious';
       }
     }
-  }
+  };
 
 </script>
 

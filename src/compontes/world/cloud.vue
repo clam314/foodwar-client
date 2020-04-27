@@ -19,50 +19,49 @@
           transform: 'none',
           zIndex: 0
         }
-      }
+      };
     },
     methods: {
       setPosition(left, top) {
-        this.style.transform = `translate(${left}px,${top}px)`
+        this.style.transform = `translate(${left}px,${top}px)`;
       },
       initPosition() {
-        const width = this.$el.clientWidth
-        this.setPosition(-width, 0)
+        const width = this.$el.clientWidth;
+        this.setPosition(-width, 0);
       },
       startAnimation(delay = 0) {
-        const vm = this
-        const width = this.$el.clientWidth
+        const vm = this;
+        const width = this.$el.clientWidth;
         const {
           min,
           max
-        } = cloudAnimationDurations
-        const animationDuration = Math.random() * (max - min) + min
-        this.style.zIndex = Math.round(max - animationDuration)
-        const top = Math.random() * (window.innerHeight * 0.3)
+        } = cloudAnimationDurations;
+        const animationDuration = Math.random() * (max - min) + min;
+        this.style.zIndex = Math.round(max - animationDuration);
+        const top = Math.random() * (window.innerHeight * 0.3);
         new TWEEN.Tween({
-            value: -width
-          })
+          value: -width
+        })
           .to({
             value: window.innerWidth
           }, animationDuration)
           .delay(delay)
           .onUpdate(function () {
-            vm.setPosition(this.value, top)
+            vm.setPosition(this.value, top);
           })
           .onComplete(() => {
-            this.startAnimation(Math.random() * 10000)
+            this.startAnimation(Math.random() * 10000);
           })
-          .start()
+          .start();
       }
     },
     mounted() {
-      this.startAnimation(-Math.random() * cloudAnimationDurations.min)
+      this.startAnimation(-Math.random() * cloudAnimationDurations.min);
     }
-  }
+  };
 
 </script>
 
 <style lang='scss' scoped>
-
 
 </style>

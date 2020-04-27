@@ -12,17 +12,17 @@
 <script>
   export default {
     name: 'hand',
-    props: ["cards"],
+    props: ['cards'],
     methods: {
       handlePlay(card) {
-        console.log("card-play")
-        this.$emit('card-play', card)
+        console.log('card-play');
+        this.$emit('card-play', card);
       },
       handleLeaveTransitionEnd() {
-        this.$emit('card-leave-end')
+        this.$emit('card-leave-end');
       }
     }
-  }
+  };
 
 </script>
 

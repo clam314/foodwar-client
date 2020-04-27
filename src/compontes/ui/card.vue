@@ -13,17 +13,17 @@
 </template>
 
 <script>
-  //import x from ''
+  // import x from ''
   export default {
-    name: "card",
-    props: ["def"],
+    name: 'card',
+    props: ['def'],
     methods: {
       play() {
-        console.log("play")
-        this.$emit("play")
+        console.log('play');
+        this.$emit('play');
       }
     }
-  }
+  };
 
 </script>
 

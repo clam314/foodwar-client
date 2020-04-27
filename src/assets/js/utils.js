@@ -1,6 +1,15 @@
+import {
+  state
+} from '../api/gameApi';
+import {
+  maxHealth,
+  maxFood,
+  handSize,
+  cardUid
+} from './config';
 // WORLD
 
-function getWorldRatio() {
+export function getWorldRatio() {
   return 1 / 1920 * window.innerWidth;
 }
 
@@ -8,14 +17,14 @@ function getWorldRatio() {
 
 // Pile
 
-function drawCard() {
+export function drawCard() {
   if (getDrawPileCount() === 0) {
     refillPile();
   }
 
   const choice = Math.round(Math.random() * (getDrawPileCount() - 1)) + 1;
 
-  let	accumulation = 0;
+  let accumulation = 0;
   for (let k in state.drawPile) {
     accumulation += state.drawPile[k];
     if (choice <= accumulation) {
@@ -30,13 +39,13 @@ function drawCard() {
   }
 }
 
-function drawInitialHand(player) {
+export function drawInitialHand(player) {
   for (let i = 0; i < handSize; i++) {
     player.hand.push(drawCard());
   }
 }
 
-function addCardToPile(pile, cardId) {
+export function addCardToPile(pile, cardId) {
   if (typeof pile[cardId] === 'number') {
     pile[cardId]++;
   } else {
@@ -44,12 +53,12 @@ function addCardToPile(pile, cardId) {
   }
 }
 
-function refillPile() {
+export function refillPile() {
   Object.assign(state.drawPile, state.discardPile);
   state.discardPile = {};
 }
 
-function getDrawPileCount() {
+export function getDrawPileCount() {
   let result = 0;
   for (let k in state.drawPile) {
     result += state.drawPile[k];
@@ -59,20 +68,20 @@ function getDrawPileCount() {
 
 // Card play
 
-function applyCardEffect(card) {
+export function applyCardEffect(card) {
   state.currentPlayer.lastPlayedCardId = card.id;
   card.def.play(state.currentPlayer, state.currentOpponent);
   // Check if the stats (health, food) are not outside the boundaries
   state.players.forEach(checkStatsBounds);
 }
 
-function getLastPlayedCard(player) {
+export function getLastPlayedCard(player) {
   return cards[player.lastPlayedCardId];
 }
 
 // Player
 
-function checkStatsBounds(player) {
+export function checkStatsBounds(player) {
   // Health
   if (player.health < 0) {
     player.health = 0;
@@ -88,10 +97,10 @@ function checkStatsBounds(player) {
   }
 }
 
-function checkPlayerLost(player) {
+export function checkPlayerLost(player) {
   player.dead = (player.health === 0 || player.food === 0);
 }
 
-function isOnePlayerDead() {
+export function isOnePlayerDead() {
   return state.players.some(p => p.dead);
 }
