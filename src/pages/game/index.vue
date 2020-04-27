@@ -26,7 +26,9 @@
 </template>
 
 <script>
-  // import x from ''
+  import topBar from '../../compontes/ui/topbar';
+  import castle from '../../compontes/world/castle';
+
   export default {
     data: state,
     computed: {
