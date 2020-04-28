@@ -17,6 +17,7 @@ Vue.use(VueFetch, {
   baseUrl: 'http://localhost:3000/'
 });
 Vue.use(VueState, state);
+Vue.use(VueTween);
 
 async function main() {
   // Get user info

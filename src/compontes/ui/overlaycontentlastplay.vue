@@ -10,6 +10,10 @@
 </template>
 
 <script>
+  import {
+    getLastPlayedCard
+  } from '../../assets/js/utils';
+
   export default {
     name: 'overlay-content-last-play',
     props: ['opponent'],

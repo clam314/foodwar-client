@@ -14,7 +14,11 @@
 </template>
 
 <script>
-// import x from ''
+  import {
+    maxHealth,
+    maxFood
+  } from '../..assets/js/config';
+
   export default {
     name: 'castle-banners',
     props: ['player'],
@@ -27,8 +31,10 @@
       }
     }
   };
+
 </script>
 
 <style lang='scss' scoped>
-//@import url()
+  //@import url()
+
 </style>

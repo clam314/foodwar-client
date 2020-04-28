@@ -8,6 +8,10 @@
 </template>
 
 <script>
+  import {
+    TWEEN
+  } from '../../assets/js/Tween';
+
   export default {
     name: 'bannerbar',
     props: ['color', 'ratio'],

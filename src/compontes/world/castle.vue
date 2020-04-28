@@ -11,6 +11,11 @@
 </template>
 
 <script>
+  import {
+    maxHealth,
+    maxFood
+  } from '../..assets/js/config';
+
   export default {
     name: 'castle',
     props: ['player'],

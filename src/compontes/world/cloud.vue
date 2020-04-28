@@ -6,6 +6,10 @@
 </template>
 
 <script>
+  import {
+    TWEEN
+  } from '../../assets/js/Tween';
+
   const cloudAnimationDurations = {
     min: 10000,
     max: 50000

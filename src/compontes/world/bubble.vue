@@ -7,7 +7,10 @@
 </template>
 
 <script>
-  // import x from ''
+  import {
+    state
+  } from '../assets/api/gameApi';
+
   export default {
     name: 'bubble',
     props: ['type', 'value', 'ratio'],

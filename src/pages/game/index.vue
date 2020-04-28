@@ -31,10 +31,21 @@
   import cloud from '../../compontes/world/cloud';
   import hand from '../../compontes/ui/hand';
   import overlay from '../../compontes/ui/overlay';
-  import overlayContentPlayerTurn from '../../compontes/ui/overlaycontentgameover';
+  import overlayContentPlayerTurn from '../../compontes/ui/overlaycontentplayerturn';
   import overlayContentLastPlay from '../../compontes/ui/overlaycontentlastplay';
   import overlayContentGameOver from '../../compontes/ui/overlaycontentgameover';
-
+  import {
+    state
+  } from '../../assets/api/gameApi';
+  import {
+    cards
+  } from '../../assets/api/cards';
+  import {
+    drawInitialHand,
+    drawCard,
+    isOnePlayerDead,
+    checkPlayerLost
+  } from '../../assets/js/utils';
   export default {
     components: {
       topBar,
@@ -46,7 +57,10 @@
       overlayContentLastPlay,
       overlayContentGameOver
     },
-    data: state,
+    data: {
+      state,
+      currentPlayingCard: null
+    },
     computed: {
       testCard() {
         return cards.archers;
@@ -61,27 +75,93 @@
       handlePlay() {
         console.log('you played a card!');
       },
-      testDrawCard() {
-        const ids = Object.keys(cards);
-        const randomId = ids[Math.floor(Math.random() * ids.length)];
-        return {
-          uid: cardUid++,
-          id: randomId,
-          def: cards[randomId]
-        };
-      },
       handlePlayCard(card) {
-        playCard(card);
+        this.playCard(card);
       },
       handleCardLeaveEnd() {
-        applyCard();
+        this.applyCard();
       },
       handleOverlayClose() {
-        overlayCloseHandlers[this.activeOverlay]();
+        this.overlayCloseHandlers[this.activeOverlay]();
+      },
+      beginGame() {
+        state.players.forEach(drawInitialHand);
+      },
+      playCard(card) {
+        if (state.canPlay) {
+          state.canPlay = false;
+          this.currentPlayingCard = card;
+          const index = state.currentPlayer.hand.indexOf(card);
+          state.currentPlayer.hand.splice(index, 1);
+          this.addCardToPile(state.discardPile, card.id);
+        }
+      },
+      applyCard() {
+        const card = this.currentPlayingCard;
+        this.applyCardEffect(card);
+        setTimeout(() => {
+          state.players.forEach(checkPlayerLost);
+          if (isOnePlayerDead()) {
+            this.endGame();
+          } else {
+            this.nextTurn();
+          }
+        }, 700);
+      },
+      nextTurn() {
+        state.turn++;
+        state.currentPlayerIndex = state.currentOpponentId;
+        state.activeOverlay = 'player-turn';
+      },
+      newTurn() {
+        state.activeOverlay = null;
+        if (state.currentPlayer.skipTurn) {
+          this.skipTurn();
+        } else {
+          this.startTurn();
+        }
+      },
+      skipTurn() {
+        state.currentPlayer.skippedTurn = true;
+        state.currentPlayer.skipTurn = false;
+        this.nextTurn();
+      },
+      startTurn() {
+        state.currentPlayer.skippedTurn = false;
+        if (state.turn > 2) {
+          // Draw new card
+          setTimeout(() => {
+            state.currentPlayer.hand.push(drawCard());
+            state.canPlay = true;
+          }, 800);
+        } else {
+          state.canPlay = true;
+        }
+      },
+      endGame() {
+        state.activeOverlay = 'game-over';
       }
     },
     mounted() {
-      beginGame();
+      this.beginGame();
+    },
+    create() {
+      state.activeOverlay = 'player-turn';
+      this.overlayCloseHandlers = {
+        'player-turn'() {
+          if (state.turn > 1) {
+            state.activeOverlay = 'last-play';
+          } else {
+            this.newTurn();
+          }
+        },
+        'last-play'() {
+          this.newTurn();
+        },
+        'game-over'() {
+          document.location.reload();
+        }
+      };
     }
   };
 

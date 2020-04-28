@@ -7,6 +7,10 @@ import {
   handSize,
   cardUid
 } from './config';
+
+import {
+  cards
+} from '../api/cards';
 // WORLD
 
 export function getWorldRatio() {
