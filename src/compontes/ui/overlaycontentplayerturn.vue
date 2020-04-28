@@ -15,8 +15,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>

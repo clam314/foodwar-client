@@ -17,10 +17,16 @@
   import {
     maxHealth,
     maxFood
-  } from '../..assets/js/config';
+  } from '../../assets/js/config';
+  import bubble from './bubble';
+  import bannerBar from './bannerbar';
 
   export default {
     name: 'castle-banners',
+    components: {
+      bubble,
+      bannerBar
+    },
     props: ['player'],
     computed: {
       foodRatio() {
@@ -33,8 +39,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>

@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import Vue from 'vue';
 import App from './App';
 import router from './router';
+import store from './store';
 import state from './assets/js/state';
 import VueFetch, {
   $fetch
@@ -17,7 +18,6 @@ Vue.use(VueFetch, {
   baseUrl: 'http://localhost:3000/'
 });
 Vue.use(VueState, state);
-Vue.use(VueTween);
 
 async function main() {
   // Get user info
@@ -31,6 +31,7 @@ async function main() {
   new Vue({
     el: '#app',
     data: state,
+    store,
     router,
     render: h => h(App)
   });

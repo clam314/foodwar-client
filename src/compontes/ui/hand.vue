@@ -10,8 +10,12 @@
 </template>
 
 <script>
+  import card from './card';
   export default {
     name: 'hand',
+    components: {
+      card
+    },
     props: ['cards'],
     methods: {
       handlePlay(card) {
@@ -25,8 +29,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>

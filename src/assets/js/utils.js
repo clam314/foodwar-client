@@ -4,8 +4,7 @@ import {
 import {
   maxHealth,
   maxFood,
-  handSize,
-  cardUid
+  handSize
 } from './config';
 
 import {
@@ -13,9 +12,7 @@ import {
 } from '../api/cards';
 // WORLD
 
-export function getWorldRatio() {
-  return 1 / 1920 * window.innerWidth;
-}
+let cardUid = 0;
 
 // GAME
 

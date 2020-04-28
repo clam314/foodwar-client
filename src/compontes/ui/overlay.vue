@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  // import x from ''
   export default {
     name: 'overlay',
     methods: {
@@ -19,8 +18,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>

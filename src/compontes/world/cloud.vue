@@ -1,7 +1,7 @@
 <!-- 组件说明 -->
 <template>
   <div class="cloud" :class="'cloud-'+type" :style="style">
-    <img :src="'../svg/cloud'+type+'.svg'" @load="initPosition" />
+    <img :src="require('../svg/cloud'+type+'.svg')" @load="initPosition" />
   </div>
 </template>
 
@@ -65,7 +65,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-
-</style>

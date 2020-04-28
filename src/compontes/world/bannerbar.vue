@@ -1,10 +1,8 @@
 <!-- 组件说明 -->
 <template>
-  <script type="text/x-template" id="banner">
-    <svg viewBox="0 0 20 260">
-        <path :d="`m 0,0 20,0 0,${height} -10,-10 -10,10 z`" :style="`fill:${color};stroke:none;`" />
-      </svg>
-    </script>
+  <svg viewBox="0 0 20 260">
+    <path :d="`m 0,0 20,0 0,${height} -10,-10 -10,10 z`" :style="`fill:${color};stroke:none;`" />
+  </svg>
 </template>
 
 <script>
@@ -47,8 +45,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>

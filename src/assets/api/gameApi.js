@@ -15,15 +15,10 @@ let pile = {
   miracle: 1
 };
 
-function getWorldRatio() {
-  return 1 / 1920 * window.innerWidth;
-}
-
 export let state = {
   // UI
   activeOverlay: null,
-  // World
-  worldRatio: getWorldRatio(),
+
   // Game
   turn: 1,
   players: [{

@@ -1,0 +1,40 @@
+{
+  "code": "0",
+  "error": null,
+  "data": {
+    "turn": 0,
+    "currentPlayerIndex": "",
+    "currentOpponentId": "",
+    "status": [{
+      "player": {
+        "name": "Anne of Cleves",
+        "icon": null,
+        "userId": "U2dad01ds41ahhe2123uihu123id"
+      },
+      "gameInfo": {
+        "food": 10,
+        "health": 10,
+        "skipTurn": false,
+        "skippedTurn": false,
+        "hand": [],
+        "lastPlayedCardId": null,
+        "dead": false
+      }
+    }, {
+      "player": {
+        "name": "William the Bald",
+        "icon": null,
+        "userId": "U2dad01ds41ahhe2123uihu123id"
+      },
+      "gameInfo": {
+        "food": 10,
+        "health": 10,
+        "skipTurn": false,
+        "skippedTurn": false,
+        "hand": [],
+        "lastPlayedCardId": null,
+        "dead": false
+      }
+    }]
+  }
+}

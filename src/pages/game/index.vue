@@ -1,31 +1,38 @@
 <!-- 组件说明 -->
 <template>
-  <div :class="cssClass">
+  <div id="game-body" :class="cssClass">
     <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
+
     <div class="world">
-      <castle v-for="(player,index) in players" :key="index" :player="player" :index="index" />
+      <castle v-for="(player, index) in players" :player="player" :index="index" :key="index" />
       <div class="land" />
       <div class="clouds">
-        <cloud v-for="index in 10" :key="index" :type="(index-1)%5+1" />
+        <cloud v-for="index in 10" :type="(index - 1) % 5 + 1" :key="index" />
       </div>
     </div>
+
     <transition name="hand">
-      <hand :cards="currentHand" v-if="!activeOverlay" @card-play="handlePlayCard"
+      <hand v-if="!activeOverlay" :cards="currentHand" @card-play="handlePlayCard"
         @card-leave-end="handleCardLeaveEnd" />
     </transition>
+
+    <transition name="fade">
+      <div class="overlay-background" v-if="activeOverlay" />
+    </transition>
+
     <transition name="zoom">
       <overlay v-if="activeOverlay" :key="activeOverlay" @close="handleOverlayClose">
         <component :is="'overlay-content-' + activeOverlay" :player="currentPlayer" :opponent="currentOpponent"
           :players="players" />
       </overlay>
     </transition>
-    <transition name="fade">
-      <div class="overlay-background" v-if="activeOverlay" />
-    </transition>
   </div>
 </template>
 
 <script>
+  import {
+    mapState
+  } from 'vuex';
   import topBar from '../../compontes/ui/topbar';
   import castle from '../../compontes/world/castle';
   import cloud from '../../compontes/world/cloud';
@@ -38,14 +45,14 @@
     state
   } from '../../assets/api/gameApi';
   import {
-    cards
-  } from '../../assets/api/cards';
-  import {
     drawInitialHand,
     drawCard,
     isOnePlayerDead,
     checkPlayerLost
   } from '../../assets/js/utils';
+  import {
+    TWEEN
+  } from '../../assets/js/Tween';
   export default {
     components: {
       topBar,
@@ -57,19 +64,25 @@
       overlayContentLastPlay,
       overlayContentGameOver
     },
-    data: {
-      state,
-      currentPlayingCard: null
+    data() {
+      return {
+        canPlay: false,
+        currentPlayer: this.$store.getters.players[0],
+        currentOpponent: this.$store.getters.players[1],
+        currentHand: state.currentHand,
+        activeOverlay: null
+      };
     },
     computed: {
-      testCard() {
-        return cards.archers;
-      },
       cssClass() {
         return {
           'can-play': this.canPlay
         };
-      }
+      },
+      players() {
+        return this.$store.getters.players;
+      },
+      ...mapState(['turn', 'currentPlayerIndex'])
     },
     methods: {
       handlePlay() {
@@ -144,9 +157,15 @@
     },
     mounted() {
       this.beginGame();
+      window.requestAnimationFrame(animate);
+
+      function animate(time) {
+        window.requestAnimationFrame(animate);
+        TWEEN.update(time);
+      }
     },
     create() {
-      state.activeOverlay = 'player-turn';
+      state.activeOverlay = null;
       this.overlayCloseHandlers = {
         'player-turn'() {
           if (state.turn > 1) {
@@ -166,8 +185,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>

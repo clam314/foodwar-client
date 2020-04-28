@@ -17,15 +17,17 @@
   flex: auto 0 0
 }
 
-.game-body {
+#game-body {
   margin: 0;
   font-family: 'Signika Negative', sans-serif;
-  background: #fff;
+  background: #6eabff;
   font-size: 22px;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
-  user-select: none
+  user-select: none;
+  width: 100%;
+  height: 100%;
 }
 
 .top-bar {

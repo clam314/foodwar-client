@@ -13,7 +13,6 @@
 </template>
 
 <script>
-  // import x from ''
   export default {
     name: 'card',
     props: ['def'],
@@ -26,8 +25,3 @@
   };
 
 </script>
-
-<style lang='scss' scoped>
-  //@import url()
-
-</style>
