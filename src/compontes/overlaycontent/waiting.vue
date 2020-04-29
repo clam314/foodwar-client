@@ -1,7 +1,7 @@
 <!-- 组件说明 -->
 <template>
   <div class='waiting'>
-    <SmartForm class="form" :title="title" :operation="operation" :valid="valid">
+    <SmartForm class="form" :title="title" :operation="operation" :valid="true">
       <FormInput name="number" type="number" v-model="number" placeholder="room bumber" />
 
       <template slot="actions">
@@ -34,13 +34,13 @@
       }
     },
     methods: {
-      operation() {
-        this.login();
+      async operation() {
+        await this.login();
       },
       async login() {
         console.log(this.number, this.robot);
 
-        this.$state.user = await this.$fetch('addRoom', {
+        this.$state.user = await this.$fetch('login', {
           method: 'POST',
           body: JSON.stringify({
             room: this.number,
@@ -52,3 +52,13 @@
   };
 
 </script>
+<style lang="scss" scoped>
+  .waiting>.form {
+    background-color: rgba($color: #fff, $alpha: 0.6);
+
+    >>>h2::after {
+      width: 100%;
+    }
+  }
+
+</style>

@@ -4,7 +4,7 @@
     <div class="player p0">{{players[0].name}}</div>
     <div class="turn-counter">
       <img class="arrow" src="./svg/turn.svg" />
-      <div class="turn" :style="size">{{title}}</div>
+      <div class="turn">{{title}}</div>
     </div>
     <div class="player p1">{{players[1].name}}</div>
   </div>
@@ -23,12 +23,7 @@
       title() {
         let turn = this.$store.state.turn;
         return turn === 0 ? 'VS' : `Turn${turn}`;
-      },
-      size() {
-        let turn = this.$store.state.turn;
-        return turn === 0 ? 'VS' : `Turn${turn}`;
       }
-
     },
     created() {
       console.log(this.players);
@@ -36,3 +31,14 @@
   };
 
 </script>
+
+<style lang="scss" scoped>
+  .top-bar {
+    height: 1.5em;
+  }
+
+  .turn {
+    font-size: 1.3em;
+  }
+
+</style>
