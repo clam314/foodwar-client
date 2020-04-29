@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  // import x from ''
   export default {
     name: 'overlay-content-player-turn',
     props: ['player']

@@ -7,8 +7,12 @@
 </template>
 
 <script>
+  import playerResult from './playerresult';
   export default {
     name: 'overlay-content-game-over',
+    components: {
+      playerResult
+    },
     props: ['players']
   };
 

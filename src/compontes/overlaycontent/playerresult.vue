@@ -7,7 +7,6 @@
 </template>
 
 <script>
-  // import x from ''
   export default {
     name: 'player-result',
     props: ['player'],

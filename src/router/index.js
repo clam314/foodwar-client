@@ -7,7 +7,7 @@ Vue.use(Router);
 
 export default new Router({
   routes: [{
-    path: '/login',
+    path: '/game',
     name: 'loginpage',
     component: LoginPage
   }, {

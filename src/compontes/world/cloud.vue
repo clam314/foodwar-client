@@ -60,6 +60,12 @@
       }
     },
     mounted() {
+      window.requestAnimationFrame(animate);
+
+      function animate(time) {
+        window.requestAnimationFrame(animate);
+        TWEEN.update(time);
+      }
       this.startAnimation(-Math.random() * cloudAnimationDurations.min);
     }
   };

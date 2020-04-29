@@ -22,24 +22,7 @@
         };
       }
     },
-    // watch: {
-    //   screenWidth(val) {
-    //     if (!this.timer) {
-    //       // 一旦监听到的screenWidth值改变，就将其重新赋给data里的screenWidth
-    //       this.screenWidth = val
-    //       this.timer = true
-    //       let that = this
-    //       setTimeout(function () {
-    //         // 打印screenWidth变化的值
-    //         console.log(that.screenWidth)
-    //         that.timer = false
-    //       }, 400)
-    //     }
-    //   }
-    // },
     mounted() {
-      console.log('ddddddd');
-
       const that = this;
       window.addEventListener('resize', () => {
         that.screenWidth = window.innerWidth;

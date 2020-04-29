@@ -11,6 +11,7 @@ const state = {
   cards: null,
   userInfo: null,
   turn: 0,
+  activeOverlay: 'waiting',
   currentPlayerIndex: '',
   currentOpponentId: '',
   status: [{

@@ -1,46 +1,27 @@
 <!-- 组件说明 -->
 <template>
   <div id="game-body" :class="cssClass">
-    <top-bar :turn="turn" :current-player-index="currentPlayerIndex" :players="players" />
-
-    <div class="world">
-      <castle v-for="(player, index) in players" :player="player" :index="index" :key="index" />
-      <div class="land" />
-      <div class="clouds">
-        <cloud v-for="index in 10" :type="(index - 1) % 5 + 1" :key="index" />
-      </div>
-    </div>
-
+    <top-bar />
+    <world />
     <transition name="hand">
       <hand v-if="!activeOverlay" :cards="currentHand" @card-play="handlePlayCard"
         @card-leave-end="handleCardLeaveEnd" />
     </transition>
-
     <transition name="fade">
       <div class="overlay-background" v-if="activeOverlay" />
     </transition>
-
     <transition name="zoom">
-      <overlay v-if="activeOverlay" :key="activeOverlay" @close="handleOverlayClose">
-        <component :is="'overlay-content-' + activeOverlay" :player="currentPlayer" :opponent="currentOpponent"
-          :players="players" />
-      </overlay>
+      <overlay-content v-if="activeOverlay" />
     </transition>
   </div>
 </template>
 
 <script>
-  import {
-    mapState
-  } from 'vuex';
-  import topBar from '../../compontes/ui/topbar';
-  import castle from '../../compontes/world/castle';
-  import cloud from '../../compontes/world/cloud';
-  import hand from '../../compontes/ui/hand';
-  import overlay from '../../compontes/ui/overlay';
-  import overlayContentPlayerTurn from '../../compontes/ui/overlaycontentplayerturn';
-  import overlayContentLastPlay from '../../compontes/ui/overlaycontentlastplay';
-  import overlayContentGameOver from '../../compontes/ui/overlaycontentgameover';
+  import topBar from '../../compontes/topbar';
+  import world from '../../compontes/world';
+  import hand from '../../compontes/hand';
+  import overlayContent from '../../compontes/overlaycontent';
+
   import {
     state
   } from '../../assets/api/gameApi';
@@ -50,27 +31,19 @@
     isOnePlayerDead,
     checkPlayerLost
   } from '../../assets/js/utils';
-  import {
-    TWEEN
-  } from '../../assets/js/Tween';
   export default {
     components: {
       topBar,
-      castle,
-      cloud,
+      world,
       hand,
-      overlay,
-      overlayContentPlayerTurn,
-      overlayContentLastPlay,
-      overlayContentGameOver
+      overlayContent
     },
     data() {
       return {
         canPlay: false,
         currentPlayer: this.$store.getters.players[0],
         currentOpponent: this.$store.getters.players[1],
-        currentHand: state.currentHand,
-        activeOverlay: null
+        currentHand: state.currentHand
       };
     },
     computed: {
@@ -82,7 +55,9 @@
       players() {
         return this.$store.getters.players;
       },
-      ...mapState(['turn', 'currentPlayerIndex'])
+      activeOverlay() {
+        return this.$store.state.activeOverlay;
+      }
     },
     methods: {
       handlePlay() {
@@ -157,12 +132,6 @@
     },
     mounted() {
       this.beginGame();
-      window.requestAnimationFrame(animate);
-
-      function animate(time) {
-        window.requestAnimationFrame(animate);
-        TWEEN.update(time);
-      }
     },
     create() {
       state.activeOverlay = null;
